@@ -6,11 +6,12 @@ function compose(...args) {
 
     return (...rest) => {
         if (rest.length === 1 && rest[0] instanceof Array) {
-            let res = rest[0];
-            for (let fn of args) {
-                res = fn.call(null, res);
-            }
-            return res;
+            // let res = rest[0];
+            // for (let fn of args) {
+            //     res = fn.call(null, res);
+            // }
+            // return res;
+            return args.reduce((pre, fn) => fn.call(null, pre), rest[0]);
         } else {
             let _allArgs = [...args, ...rest];
             return compose(..._allArgs);

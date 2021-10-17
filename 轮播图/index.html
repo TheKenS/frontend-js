@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="form.css">
+</head>
+
+<body>
+    <div class="total">
+        <ul id="banner">
+            <!-- 多加一张图片是为了最后一张和第一张的衔接 -->
+            <li><img src="lunbo1.png"></li>
+            <li><img src="lunbo2.png"></li>
+            <li><img src="lunbo3.png"></li>
+            <li><img src="lunbo4.png"></li>
+            <li><img src="lunbo1.png"></li>
+        </ul>
+    </div>
+
+    <script>
+        var curindex = 0
+        var maxlen = document.getElementById("banner").getElementsByTagName("li").length - 1;
+        console.dir(document.getElementById("banner"));
+        var timer = null
+        timer = setInterval(change_auto,3000)
+        function change_auto(){
+            if(curindex<maxlen){
+                curindex++;
+                get_next();
+            }else
+            {
+                curindex = 0;
+                get_reset()
+            }
+        }
+        var width = 655
+        function get_next(){
+            var totalbanner = document.getElementById("banner")
+            totalbanner.style.marginLeft = "-"+width*curindex+"px"; // important
+            totalbanner.style.transition = 0.3+"s"
+        }
+        function get_reset(){
+            var totalbanner = document.getElementById("banner")
+            totalbanner.style.marginLeft = "0px"
+            totalbanner.style.transition = "0s"
+        }
+    </script>
+</body>
+
+</html>
